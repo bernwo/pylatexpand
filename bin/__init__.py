@@ -214,7 +214,11 @@ def generate_expanded_tex(
     return expanded_tex_filename
 
 
-def main():
+def main(
+    temporary_working_directory: None | str = None,
+    input_tex: None | str = None,
+    embed_bbl: None | bool = None,
+) -> None:
     # Check for the executable required.
     executables_required = ("latexpand", "bibtex")
     for executable_required in executables_required:
@@ -223,66 +227,69 @@ def main():
         ), f"\x1b[0;91mPlease install '{executable_required}' or make sure it is in path. TeXLive is recommended.\x1b[0m"
 
     # Set up the command line argument parser.
-    parser = argparse.ArgumentParser(
-        prog="pylatexpand",
-        description="\x1b[1;3;4;92mPython wrapper for latexpand and bibtex\x1b[0m",
-        epilog="Written by Wo",
-    )
-    parser.add_argument(
-        "-i",
-        "--input-main-tex-file",
-        type=str,
-        required=True,
-        help="name of the input tex file. File extension is optional",
-    )
-    parser.add_argument(
-        "-b",
-        "--input-bib-file",
-        type=str,
-        required=False,
-        default="bibfile.bib",
-        help="name of the .bib file. (default=bibfile.bib)",
-    )
-    parser.add_argument(
-        "-C",
-        "--temporary-working-directory",
-        type=str,
-        required=False,
-        help="change to temporary working directory",
-    )
-    parser.add_argument(
-        "-E",
-        "--expanded-tex-filename",
-        type=str,
-        required=False,
-        help="expanded tex filename",
-    )
-    parser.add_argument(
-        "--embed-bbl",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        required=False,
-        help="whether to embed `.bbl` file within the expanded `.tex` file or not (default=False). Note that the generation of `.bbl` is always automated. This option is ignored if no `\\bibliography{...}` is found within the input main `.tex` file.",
-    )
+    if (
+        (temporary_working_directory is None)
+        and (input_tex is None)
+        and (embed_bbl is None)
+    ):
+        parser = argparse.ArgumentParser(
+            prog="pylatexpand",
+            description="\x1b[1;3;4;92mPython wrapper for latexpand and bibtex\x1b[0m",
+            epilog="Written by Wo",
+        )
+        parser.add_argument(
+            "-i",
+            "--input-main-tex-file",
+            type=str,
+            required=True,
+            help="name of the input tex file. File extension is optional",
+        )
+        parser.add_argument(
+            "-C",
+            "--temporary-working-directory",
+            type=str,
+            required=False,
+            help="change to temporary working directory",
+        )
+        parser.add_argument(
+            "-E",
+            "--expanded-tex-filename",
+            type=str,
+            required=False,
+            help="expanded tex filename",
+        )
+        parser.add_argument(
+            "--embed-bbl",
+            action=argparse.BooleanOptionalAction,
+            default=False,
+            required=False,
+            help="whether to embed `.bbl` file within the expanded `.tex` file or not (default=False). Note that the generation of `.bbl` is always automated. This option is ignored if no `\\bibliography{...}` is found within the input main `.tex` file.",
+        )
+
+        args = parser.parse_args()
+        input_main_tex_file = pathlib.Path(args.input_main_tex_file)
+        expanded_tex_filename = args.expanded_tex_filename
+        temporary_working_directory = args.temporary_working_directory
+        embed_bbl = args.embed_bbl
+    else:
+        input_main_tex_file = pathlib.Path(input_tex)
+        expanded_tex_filename = None
 
     # Handle the command line arguments supplied by the user
-    args = parser.parse_args()
-    input_main_tex_file = pathlib.Path(args.input_main_tex_file)
-    if args.expanded_tex_filename:
+    if expanded_tex_filename is not None:
         expanded_tex_filename = pathlib.Path(args.expanded_tex_filename)
         if expanded_tex_filename.stem == expanded_tex_filename.as_posix():
             expanded_tex_filename = expanded_tex_filename.with_suffix(".tex")
         if expanded_tex_filename.suffix != ".tex":
             parser.error(f"Expanded tex file's extension must be .tex!")
-    else:
-        expanded_tex_filename = None
+
     # If the input argument doesn't contain a file extension, automatically add .tex to it
     if input_main_tex_file.stem == input_main_tex_file.as_posix():
         input_main_tex_file = input_main_tex_file.with_suffix(".tex")
     if input_main_tex_file.suffix != ".tex":
         parser.error(f"Input file's extension must be .tex!")
-    if args.temporary_working_directory:
-        temporary_working_directory = pathlib.Path(args.temporary_working_directory)
+    if temporary_working_directory is not None:
+        temporary_working_directory = pathlib.Path(temporary_working_directory)
         assert (
             temporary_working_directory.is_dir()
         ), f"{temporary_working_directory} is not a directory"
@@ -298,14 +305,13 @@ def main():
     expanded_tex_filename = generate_expanded_tex(
         input_main_tex_file,
         expanded_tex_filename=expanded_tex_filename,
-        embed_bbl=args.embed_bbl,
-        bibfile=pathlib.Path(args.input_bib_file).with_suffix("").as_posix(),
+        embed_bbl=embed_bbl,
     )
     # LaTeX processing done.
     print("\x1b[0;92mDone\x1b[0m")
 
     # Information printing.
-    if args.temporary_working_directory:
+    if temporary_working_directory is not None:
         os.chdir(cwd)
         resulting_str = temporary_working_directory / expanded_tex_filename
     else:
