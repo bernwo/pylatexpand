@@ -12,7 +12,7 @@ def check_bibliography(tex_filename: str | pathlib.Path) -> pathlib.Path | None:
     ----------
     tex_filename: str | pathlib.Path
         Path to the `.tex` file that you want to check the existence of `\\bibliography{...}` for.
-    
+
     Returns
     -------
     result: pathlib.Path | None
@@ -45,7 +45,7 @@ def update_bibliography(
     ----------
     tex_filename: str | pathlib.Path
         Path to the `.tex` file that you want to update `\\bibliography{...}` for.
-    
+
     new_bibliography_filename: str
         Name of the new bibliography file that you want to insert into `\\bibliography{...}`.
 
@@ -75,7 +75,7 @@ def is_tool(name: str) -> bool:
     ----------
     name: str
         Name of the tool that you want to check whether is installed and added to PATH.
-    
+
     Returns
     bool
         `True` if the tool is installed and added to PATH, else `False`.
@@ -89,7 +89,7 @@ def generate_bbl(tex_filename: str | pathlib.Path) -> None:
     ----------
     tex_filename: str | pathlib.Path
         Path to the `.tex` file that you want to generate `.bbl` file for. Nothing will be generated if `\\bibliography{...}` is not found.
-    
+
     Returns
     -------
     None
@@ -214,14 +214,14 @@ def generate_expanded_tex(
     return expanded_tex_filename
 
 
-if __name__ == "__main__":
+def main():
     # Check for the executable required.
     executables_required = ("latexpand", "bibtex")
     for executable_required in executables_required:
         assert is_tool(
             executable_required
         ), f"\x1b[0;91mPlease install '{executable_required}' or make sure it is in path. TeXLive is recommended.\x1b[0m"
-    
+
     # Set up the command line argument parser.
     parser = argparse.ArgumentParser(
         prog="pylatexpand",
@@ -290,7 +290,7 @@ if __name__ == "__main__":
         os.chdir(temporary_working_directory)
     if not input_main_tex_file.is_file():
         parser.error(f"Input {input_main_tex_file} file not found!")
-    
+
     # Generate the `.bbl` file where appropriate.
     generate_bbl(input_main_tex_file)
 
@@ -320,3 +320,7 @@ if __name__ == "__main__":
         print(
             "Note that you would have to install \x1b[1;4;96mlatexmk\x1b[0m or add it to PATH. TexLive is recommended."
         )
+
+
+if __name__ == "__main__":
+    main()
