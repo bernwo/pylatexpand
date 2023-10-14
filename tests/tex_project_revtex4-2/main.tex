@@ -1,0 +1,30 @@
+\documentclass[aps,pra,twocolumn,superscriptaddress,amssymb,amsmath,floatfix,longbibliography,nofootinbib]{revtex4-2}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+}
+
+\bibliographystyle{apsrev4-2}
+
+\begin{document}
+
+\input{aux_tex/authors.tex}
+
+\title{The title of your paper}
+\input{aux_tex/abstract.tex}
+
+\date{\today}
+
+
+
+\maketitle
+
+\input{sections/sec1.tex}
+
+\input{sections/sec2.tex}
+
+\bibliography{bibfile}
+
+\end{document}
