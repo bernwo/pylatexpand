@@ -172,3 +172,17 @@ cython_debug/
 *tmp*.ipynb
 *copy*.ipynb
 *Copy*.ipynb
+*.log
+
+# LaTeX
+*.fdb_latexmk
+*.fls
+*.aux
+*.synctex.gz
+*.out
+*.blg
+*.xdv
+*.bbl
+*Expanded.tex
+*Notes.bib
+
