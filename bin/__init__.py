@@ -249,7 +249,7 @@ def main(
             "--temporary-working-directory",
             type=str,
             required=False,
-            help="change to temporary working directory",
+            help="temporarily change to your desired working directory",
         )
         parser.add_argument(
             "-E",
