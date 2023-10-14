@@ -167,6 +167,11 @@ cython_debug/
 *tmp*.py
 *copy*.py
 *Copy*.py
+*test*.txt
+*temp*.txt
+*tmp*.txt
+*copy*.txt
+*Copy*.txt
 *test*.ipynb
 *temp*.ipynb
 *tmp*.ipynb
