@@ -173,6 +173,8 @@ cython_debug/
 *copy*.ipynb
 *Copy*.ipynb
 *.log
+!test_assignment.py
+!test_revtex4-2.py
 
 # LaTeX
 *.fdb_latexmk
