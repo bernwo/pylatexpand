@@ -22,10 +22,24 @@ You're using Linux, ∴ you should know what you're doing ;)
 
 After you have both `latexpand` and `bibtex` installed, you can proceed to installing `pylatexpand`. The steps listed here should apply to Windows, macOS, and Linux.
 
+## From the Python Package index
+
+```shell
+pip install pip install pylatexpand
+```
+
 ## From the `main` branch on Github
 
 ```shell
 pip install https://github.com/bernwo/pylatexpand/archive/main.zip
+```
+
+## Uninstallation
+
+To uninstall, simply run
+
+```shell
+pip uninstall -y pylatexpand
 ```
 
 # Usage
