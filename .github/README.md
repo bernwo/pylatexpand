@@ -3,7 +3,9 @@
 
 # PyLaTeXpand
 
-A convenient wrapper for `latexpand` and `bibtex`.
+A convenient wrapper for `latexpand` and `bibtex` that flattens your complicated LaTeX project into a single `.tex` file.
+
+<video width="640" height="320" src="https://raw.githubusercontent.com/bernwo/pylatexpand/main/assets/test_revtex4-2_no_embed_bbl.mp4"></video>
 
 # Prerequisites
 
