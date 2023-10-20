@@ -28,7 +28,7 @@ After you have both `latexpand` and `bibtex` installed, you can proceed to insta
 ## From the Python Package index
 
 ```shell
-pip install pip install pylatexpand
+pip install pylatexpand
 ```
 
 ## From the `main` branch on Github
