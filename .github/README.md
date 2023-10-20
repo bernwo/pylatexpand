@@ -1,3 +1,6 @@
+[![Tool](https://img.shields.io/badge/Made%20with-Python-1C72C5?logo=python)](https://python.org)
+[![Platforms](https://img.shields.io/badge/Platform-Windows/MacOS/Linux-crimson)](https://github.com/bernwo/pylatexpand)
+
 # PyLaTeXpand
 
 A convenient wrapper for `latexpand` and `bibtex`.
