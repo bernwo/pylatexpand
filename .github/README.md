@@ -93,7 +93,7 @@ git clone https://github.com/bernwo/pylatexpand.git
 pylatexpand -C tests/tex_project_revtex4-2 -i main.tex --embed--bbl
 ```
 
-### RevTeX4-2 tex project (with .bbl embedding)
+### RevTeX4-2 tex project (without .bbl embedding)
 
 ```shell
 pylatexpand -C tests/tex_project_revtex4-2 -i main.tex --no-embed--bbl
