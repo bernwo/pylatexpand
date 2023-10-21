@@ -5,7 +5,20 @@
 
 A convenient wrapper for `latexpand` and `bibtex` that flattens your complicated LaTeX project into a single `.tex` file.
 
-<video width="640" height="320" src="https://github.com/bernwo/pylatexpand/assets/53580103/109bf8ab-d99b-4764-957b-f133f2e5796a"></video>
+## Overview of how it works
+
+<p align="center">
+  <img src="../assets/operating_principle.svg" />
+</p>
+
+## Usage example
+
+The following animation replicates the [image shown above](#overview-of-how-it-works).
+This step is also exactly the one shown in [`Example > RevTeX4-2 tex project (without .bbl embedding)`](#revtex4-2-tex-project-without-bbl-embedding) below.
+
+<p align="center">
+  <video width="640" height="320" src="https://github.com/bernwo/pylatexpand/assets/53580103/109bf8ab-d99b-4764-957b-f133f2e5796a"></video>
+</p>
 
 # Prerequisites
 
