@@ -5,7 +5,7 @@
 
 A convenient wrapper for `latexpand` and `bibtex` that flattens your complicated LaTeX project into a single `.tex` file.
 
-<video width="640" height="320" src="https://raw.githubusercontent.com/bernwo/pylatexpand/main/assets/test_revtex4-2_no_embed_bbl.mp4"></video>
+<video width="640" height="320" src="https://github.com/bernwo/pylatexpand/assets/53580103/109bf8ab-d99b-4764-957b-f133f2e5796a"></video>
 
 # Prerequisites
 
