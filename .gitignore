@@ -193,4 +193,4 @@ cython_debug/
 *.bbl
 *Expanded.tex
 *Notes.bib
-
+/tests/*/*.pdf
